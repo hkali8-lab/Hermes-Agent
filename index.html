@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Hermes-Agent — public site for the hkali8-lab/Hermes-Agent project.">
+<title>Hermes-Agent</title>
+<style>
+:root{
+  --bg:#fafaf7; --surface:#ffffff; --ink:#1c1b18; --muted:#6f6d66;
+  --line:#e6e4dc; --accent:#1f6f54; --accent-ink:#fff;
+  --radius:14px; --maxw:680px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1012; --surface:#181a1e; --ink:#eceae5; --muted:#918f88;
+    --line:#2a2c31; --accent:#43b184; --accent-ink:#0c1210;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  min-height:100dvh; display:flex; align-items:center; justify-content:center;
+  background:var(--bg); color:var(--ink);
+  font:16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; padding:40px 24px;
+}
+.card{
+  width:100%; max-width:var(--maxw);
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:44px 40px;
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+  animation:rise .5s cubic-bezier(.2,.7,.3,1) both;
+}
+.eyebrow{
+  display:inline-block; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); font-weight:600; margin:0 0 18px;
+}
+h1{font-size:2.5rem; line-height:1.1; letter-spacing:-.02em; margin:0 0 14px; font-weight:700}
+p.lead{font-size:1.05rem; color:var(--muted); margin:0 0 28px; text-wrap:pretty}
+p.lead code{font:inherit; color:var(--ink); background:color-mix(in srgb, var(--accent) 12%, transparent); padding:1px 6px; border-radius:6px}
+.actions{display:flex; flex-wrap:wrap; gap:12px}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; min-height:46px; padding:0 20px;
+  font:inherit; font-weight:600; border-radius:10px; text-decoration:none;
+  transition:filter .15s ease, transform .15s ease;
+}
+.btn svg{width:18px; height:18px}
+.btn.primary{background:var(--accent); color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--accent); color:var(--accent)}
+.btn:active{transform:translateY(1px)}
+.foot{margin:26px 0 0; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem}
+.foot a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line)}
+.foot a:hover{color:var(--accent); border-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:6px}
+@keyframes rise{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+@media (max-width:520px){ .card{padding:32px 22px} h1{font-size:2rem} }
+@media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+</style>
+</head>
+<body>
+<main class="card">
+  <p class="eyebrow">hkali8-lab</p>
+  <h1>Hermes-Agent</h1>
+  <p class="lead">
+    Public site for the <code>hkali8-lab/Hermes-Agent</code> project.
+    Built as a static page and deployed to GitHub Pages automatically on every
+    push to <code>main</code>.
+  </p>
+  <div class="actions">
+    <a class="btn primary" href="https://github.com/hkali8-lab/Hermes-Agent" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.46-2.01.37-2.53-.49-2.69-.94-.09-.25-.45-1.03-.81-1.24-.24-.14-.59-.05-.45.16.13.18.43.72.61 1.05.29.55 1.03 1.05 2.02.84.06-.66.29-1.04.53-1.28-1.85-.24-3.57-.93-3.57-4.18 0-.93.33-1.73.88-2.34-.09-.22-.38-1.12.08-2.35 0 0 .72-.24 2.35.9.69-.2 1.42-.3 2.14-.3.72 0 1.45.1 2.14.3 1.63-1.14 2.35-.9 2.35-.9.46 1.23.17 2.13.08 2.35.55.61.88 1.41.88 2.34 0 3.26-1.72 3.94-3.57 4.18.28.27.54.79.54 1.62 0 1.17-.01 2.11-.01 2.39 0 .21.15.46.55.38C13.71 14.53 16 11.54 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      Source code
+    </a>
+    <a class="btn ghost" href="https://hermes-agent.nousresearch.com/docs" target="_blank" rel="noopener">
+      Documentation
+    </a>
+  </div>
+  <p class="foot">
+    Auto-deployed by <a href="https://github.com/hkali8-lab/Hermes-Agent/tree/main/.github/workflows">GitHub Actions</a> ·
+    <a href="https://github.com/hkali8-lab/Hermes-Agent/tree/main/.github/workflows/deploy-pages.yml">view workflow</a>
+  </p>
+</main>
+</body>
+</html>

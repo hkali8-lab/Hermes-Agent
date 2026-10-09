@@ -1,0 +1,45 @@
+# Deploy this static site to GitHub Pages.
+# Pages is configured with build_type: workflow (source main:/), so the
+# deployment is driven entirely by this Actions workflow.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # Build: validate + upload the static site as a Pages artifact.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sanity check
+        run: test -f index.html || { echo "index.html missing"; exit 1; }
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Ship the whole repo root (index.html + README + .github) to Pages.
+          path: .
+
+  # Deploy: push the uploaded artifact to GitHub Pages.
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
